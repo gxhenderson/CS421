@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="200" 
+            prefWidth="380" 
+            fx:controller="henderson_hw1.FXMLDocumentController">
+    <children>
+        <TabPane id="OrderOptions" prefHeight="200" prefWidth="380" >  
+        <tabs>
+            <Tab text="Order Pizza">
+            <BorderPane prefHeight="150" prefWidth="300"  >
+                <top>
+                <HBox alignment="CENTER" spacing="10">
+                    <Label id="lblLastName" text="Last Name:"  prefWidth="70"
+                           layoutY="100" />
+                    <TextField id="txtLastName" prefColumnCount="10" /> 
+                </HBox>
+                </top>
+                
+                <center>
+                <HBox id="PizzaOptions" alignment="CENTER" spacing="10" >
+                    <children>
+                        <ComboBox fx:id="cbxPizzaName" prefWidth="100" >
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Pepperoni" />
+                                <String fx:value="Hawaiian" />
+                                <String fx:value="Veggie" />
+                                <String fx:value="Meat" />
+                                <String fx:value="Special" />
+                                </FXCollections>
+                            </items>
+                            <value><String fx:value="Pepperoni" /></value>
+                        </ComboBox>   
+
+                        <ComboBox fx:id="cbxPizzaSize" prefWidth="90">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Small" />
+                                <String fx:value="Medium" />
+                                <String fx:value="Large" />
+                                </FXCollections>
+                            </items>
+                            <value><String fx:value="Small" /></value>
+                        </ComboBox>   
+
+                        <ComboBox fx:id="cbxExtraToppings" prefWidth="130">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Extra Cheese" />
+                                <String fx:value="Green Pepper" />
+                                <String fx:value="Onion" />
+                                <String fx:value="Mushroom" />
+                                <String fx:value="Black Olive" />
+                                <String fx:value="Tomato" />
+                                <String fx:value="Jalapeno Pepper" />
+                                </FXCollections>
+                            </items>
+                            <value><String fx:value="Extra Cheese" /></value>
+                        </ComboBox>    
+                    </children>
+                </HBox> 
+                </center>
+                
+                <bottom>
+                <HBox alignment="CENTER" spacing="10">
+                    <Button fx:id="btnAdd" text="Add Pizza" 
+                            onAction="#btnAddPressed" />
+                    <Button fx:id="btnOrder" text="Order Pizza" 
+                            onAction="#btnOrderPressed" /> 
+                </HBox>
+                </bottom>
+            </BorderPane>
+            </Tab>
+            <Tab text="View Order">
+                <TableView fx:id="tblPizza" prefHeight="500" prefWidth="380" >
+                    <columns>
+                    <TableColumn prefWidth="80" text="Last Name" 
+                                 fx:id="lastName" />
+                    <TableColumn prefWidth="80" text="Flavor" fx:id="flavor" />
+                    <TableColumn prefWidth="80" text="Size" fx:id="size" />
+                    <TableColumn prefWidth="80" text="Topping" fx:id="topping"/>
+                    <TableColumn prefWidth="80" text="Price" fx:id="price" />
+                    </columns>
+                </TableView>
+            </Tab>
+        </tabs>
+        </TabPane>
+        
+        
+    </children>
+</AnchorPane>
