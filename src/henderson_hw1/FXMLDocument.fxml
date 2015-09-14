@@ -19,7 +19,7 @@
                 <HBox alignment="CENTER" spacing="10">
                     <Label id="lblLastName" text="Last Name:"  prefWidth="70"
                            layoutY="100" />
-                    <TextField id="txtLastName" prefColumnCount="10" /> 
+                    <TextField fx:id="txtLastName" prefColumnCount="10" /> 
                 </HBox>
                 </top>
                 
@@ -79,7 +79,7 @@
             </BorderPane>
             </Tab>
             <Tab text="View Order">
-                <TableView fx:id="tblPizza" prefHeight="500" prefWidth="380" >
+                <!--TableView fx:id="tblPizza" prefHeight="500" prefWidth="380" >
                     <columns>
                     <TableColumn prefWidth="80" text="Last Name" 
                                  fx:id="lastName" />
@@ -88,7 +88,10 @@
                     <TableColumn prefWidth="80" text="Topping" fx:id="topping"/>
                     <TableColumn prefWidth="80" text="Price" fx:id="price" />
                     </columns>
-                </TableView>
+                </TableView-->
+                <ListView fx:id="lstPizza" prefHeight="500" prefWidth="380">
+                    
+                </ListView>
             </Tab>
         </tabs>
         </TabPane>
