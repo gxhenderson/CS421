@@ -5,6 +5,7 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="200" 
@@ -79,19 +80,30 @@
             </BorderPane>
             </Tab>
             <Tab text="View Order">
-                <!--TableView fx:id="tblPizza" prefHeight="500" prefWidth="380" >
+                <TableView fx:id="tblPizza" prefHeight="500" prefWidth="380"  >
                     <columns>
-                    <TableColumn prefWidth="80" text="Last Name" 
-                                 fx:id="lastName" />
-                    <TableColumn prefWidth="80" text="Flavor" fx:id="flavor" />
-                    <TableColumn prefWidth="80" text="Size" fx:id="size" />
-                    <TableColumn prefWidth="80" text="Topping" fx:id="topping"/>
-                    <TableColumn prefWidth="80" text="Price" fx:id="price" />
+                    <TableColumn prefWidth="80" text="Last Name" >
+                        <cellValueFactory><PropertyValueFactory property="lastName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="80" text="Flavor">
+                        <cellValueFactory><PropertyValueFactory property="pizzaName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="80" text="Size">
+                        <cellValueFactory><PropertyValueFactory property="pizzaSize" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="80" text="Topping">
+                        <cellValueFactory><PropertyValueFactory property="extraTopping" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="80" text="Price">
+                        <cellValueFactory><PropertyValueFactory property="price" />
+                        </cellValueFactory>
+                    </TableColumn>
                     </columns>
-                </TableView-->
-                <ListView fx:id="lstPizza" prefHeight="500" prefWidth="380">
-                    
-                </ListView>
+                </TableView>
             </Tab>
         </tabs>
         </TabPane>

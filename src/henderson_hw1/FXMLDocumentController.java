@@ -7,6 +7,7 @@ package henderson_hw1;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,22 +30,40 @@ public class FXMLDocumentController implements Initializable
     private ComboBox cbxPizzaSize;
     
     @FXML
-    private ComboBox cbxExtraTopping;
+    private ComboBox cbxExtraToppings;
     
     @FXML
-    private TableView tblPizza;
+    private TableView<Pizza> tblPizza;
+    @FXML
+    private TableColumn<Pizza, String> lastName;
+    @FXML
+    private TableColumn<Pizza, String> pizzaName;
+    @FXML
+    private TableColumn<Pizza, String> pizzaSize;
+    @FXML
+    private TableColumn<Pizza, String> extraTopping;
+    @FXML
+    private TableColumn<Pizza, String> price;
     
-    private ObservableList<Pizza> pizzas;
+    private ObservableList<Pizza> pizzas = FXCollections.observableArrayList();
     
     @FXML
     private void btnAddPressed(ActionEvent event) 
     {
+        double price = Pizza.getPrice((String)cbxPizzaName.getValue(), 
+                        (String)cbxPizzaSize.getValue());
+        
         pizzas.add(new Pizza(txtLastName.getText(), 
                 (String)cbxPizzaName.getValue(), 
                 (String)cbxPizzaSize.getValue(), 
-                (String)cbxExtraTopping.getValue(),
-                Pizza.getPrice((String)cbxPizzaName.getValue(), 
-                        (String)cbxPizzaSize.getValue())));
+                (String)cbxExtraToppings.getValue(),
+                price));
+//        java.lang.System.out.println(txtLastName.getText());
+//        java.lang.System.out.println((String)cbxPizzaName.getValue());
+//        java.lang.System.out.println((String)cbxPizzaSize.getValue());
+//        java.lang.System.out.println((String)cbxExtraToppings.getValue());
+//        java.lang.System.out.println(Pizza.getPrice((String)cbxPizzaName.getValue(), 
+//                        (String)cbxPizzaSize.getValue()));
     }
     
     @FXML
@@ -56,7 +75,11 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        
+        //lastName.setCellValueFactory(cellData -> cellData.getValue().getLastName());
+        //pizzaName.setCellValueFactory(cellData -> cellData.getValue().getPizzaName());
+        //pizzaSize.setCellValueFactory(cellData -> cellData.getValue().getPizzaSize());
+        //extraTopping.setCellValueFactory(cellData -> cellData.getValue().getExtraTopping());
+        //price.setCellValueFactory(cellData -> cellData.getValue().getPrice());
     }    
     
     public static class Pizza
@@ -99,14 +122,40 @@ public class FXMLDocumentController implements Initializable
          * @param extraTopping
          * @param price
          */
-        public Pizza(String lastName, String pizzaName, String pizzaSize,
-                String extraTopping, double price)
+        public Pizza(String lastName, String pizzaName, 
+                String pizzaSize, String extraTopping, 
+                double price)
         {
             this.lastName = lastName;
             this.pizzaName = pizzaName;
             this.pizzaSize = pizzaSize;
             this.extraTopping = extraTopping;
             this.price = price;
+        }
+        
+        public String getLastName()
+        {
+            return this.lastName;
+        }
+        
+        public String getPizzaName()
+        {
+            return this.pizzaName;
+        }
+        
+        public String getPizzaSize()
+        {
+            return this.pizzaSize;
+        }
+        
+        public String getExtraTopping()
+        {
+            return this.extraTopping;
+        }
+        
+        public double getPrice()
+        {
+            return this.price;
         }
         
         /**
