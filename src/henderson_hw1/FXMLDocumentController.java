@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package henderson_hw1;
 
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,11 +12,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 /**
- *
+ * This class contains all the controls for the GUI.
+ * It will add the pizzas ordered to the grid.
  * @author gxhender
  */
 public class FXMLDocumentController implements Initializable 
 {
+    //Obtain the FXML objects that need to be loaded to the grid
+    
     @FXML
     private TextField txtLastName;
     
@@ -34,16 +34,6 @@ public class FXMLDocumentController implements Initializable
     
     @FXML
     private TableView<Pizza> tblPizza;
-    @FXML
-    private TableColumn<Pizza, String> lastName;
-    @FXML
-    private TableColumn<Pizza, String> pizzaName;
-    @FXML
-    private TableColumn<Pizza, String> pizzaSize;
-    @FXML
-    private TableColumn<Pizza, String> extraTopping;
-    @FXML
-    private TableColumn<Pizza, String> price;
     
     private ObservableList<Pizza> pizzas = FXCollections.observableArrayList();
     
@@ -58,12 +48,6 @@ public class FXMLDocumentController implements Initializable
                 (String)cbxPizzaSize.getValue(), 
                 (String)cbxExtraToppings.getValue(),
                 price));
-//        java.lang.System.out.println(txtLastName.getText());
-//        java.lang.System.out.println((String)cbxPizzaName.getValue());
-//        java.lang.System.out.println((String)cbxPizzaSize.getValue());
-//        java.lang.System.out.println((String)cbxExtraToppings.getValue());
-//        java.lang.System.out.println(Pizza.getPrice((String)cbxPizzaName.getValue(), 
-//                        (String)cbxPizzaSize.getValue()));
     }
     
     @FXML
@@ -75,11 +59,7 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        //lastName.setCellValueFactory(cellData -> cellData.getValue().getLastName());
-        //pizzaName.setCellValueFactory(cellData -> cellData.getValue().getPizzaName());
-        //pizzaSize.setCellValueFactory(cellData -> cellData.getValue().getPizzaSize());
-        //extraTopping.setCellValueFactory(cellData -> cellData.getValue().getExtraTopping());
-        //price.setCellValueFactory(cellData -> cellData.getValue().getPrice());
+        
     }    
     
     public static class Pizza
@@ -115,7 +95,8 @@ public class FXMLDocumentController implements Initializable
         private final static double TOPLARGE = 1.50;
         
         /**
-         *
+         * This class creates the pizzas being ordered
+         * 
          * @param lastName
          * @param pizzaName
          * @param pizzaSize
@@ -132,6 +113,8 @@ public class FXMLDocumentController implements Initializable
             this.extraTopping = extraTopping;
             this.price = price;
         }
+        
+        // Get functions to add objects to the grid
         
         public String getLastName()
         {
@@ -153,13 +136,14 @@ public class FXMLDocumentController implements Initializable
             return this.extraTopping;
         }
         
-        public double getPrice()
+        public String getPrice()
         {
-            return this.price;
+            NumberFormat formatter = new DecimalFormat("#0.00"); 
+            return "$" + (formatter.format(price));
         }
         
         /**
-         *
+         * Returns the price of the specified pizza
          * @param pizzaName
          * @param pizzaSize
          * @return
@@ -168,6 +152,7 @@ public class FXMLDocumentController implements Initializable
         {
             double tempPrice = 0.00;
             
+            // Price of the specified pizza
             switch(pizzaName)
             {
                 case "Pepperoni": 
@@ -187,8 +172,8 @@ public class FXMLDocumentController implements Initializable
                     break;
             }
             
-            //Adds additional fees for different size pizzas,
-            //including topping fees
+            // Adds additional fees for different size pizzas,
+            // including topping fees
             switch(pizzaSize)
             {
                 case "Medium":

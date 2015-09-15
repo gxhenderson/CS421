@@ -8,14 +8,17 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="200" 
-            prefWidth="380" 
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" 
+            id="AnchorPane" prefHeight="200" prefWidth="380" 
             fx:controller="henderson_hw1.FXMLDocumentController">
     <children>
+        <!-- Tabs to order and view -->
         <TabPane id="OrderOptions" prefHeight="200" prefWidth="380" >  
         <tabs>
+            <!-- Tab to order pizza -->
             <Tab text="Order Pizza">
             <BorderPane prefHeight="150" prefWidth="300"  >
+                <!-- Add label and textview for order name -->
                 <top>
                 <HBox alignment="CENTER" spacing="10">
                     <Label id="lblLastName" text="Last Name:"  prefWidth="70"
@@ -24,9 +27,11 @@
                 </HBox>
                 </top>
                 
+                <!-- Add comboboxes for different pizza options -->
                 <center>
                 <HBox id="PizzaOptions" alignment="CENTER" spacing="10" >
                     <children>
+                        <!-- Combobox for pizza name -->
                         <ComboBox fx:id="cbxPizzaName" prefWidth="100" >
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
@@ -39,7 +44,8 @@
                             </items>
                             <value><String fx:value="Pepperoni" /></value>
                         </ComboBox>   
-
+                        
+                        <!-- Combobox for pizza size -->
                         <ComboBox fx:id="cbxPizzaSize" prefWidth="90">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
@@ -51,6 +57,7 @@
                             <value><String fx:value="Small" /></value>
                         </ComboBox>   
 
+                        <!-- Combobox for extra toppings -->
                         <ComboBox fx:id="cbxExtraToppings" prefWidth="130">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
@@ -69,6 +76,7 @@
                 </HBox> 
                 </center>
                 
+                <!-- Add buttons for adding and ordering pizza -->
                 <bottom>
                 <HBox alignment="CENTER" spacing="10">
                     <Button fx:id="btnAdd" text="Add Pizza" 
@@ -79,27 +87,35 @@
                 </bottom>
             </BorderPane>
             </Tab>
+            
+            <!-- Tab for pizza order -->
             <Tab text="View Order">
+                <!-- Table to view order -->
                 <TableView fx:id="tblPizza" prefHeight="500" prefWidth="380"  >
                     <columns>
                     <TableColumn prefWidth="80" text="Last Name" >
-                        <cellValueFactory><PropertyValueFactory property="lastName" />
+                        <cellValueFactory>
+                            <PropertyValueFactory property="lastName" />
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn prefWidth="80" text="Flavor">
-                        <cellValueFactory><PropertyValueFactory property="pizzaName" />
+                        <cellValueFactory>
+                            <PropertyValueFactory property="pizzaName" />
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn prefWidth="80" text="Size">
-                        <cellValueFactory><PropertyValueFactory property="pizzaSize" />
+                        <cellValueFactory>
+                            <PropertyValueFactory property="pizzaSize" />
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn prefWidth="80" text="Topping">
-                        <cellValueFactory><PropertyValueFactory property="extraTopping" />
+                        <cellValueFactory>
+                            <PropertyValueFactory property="extraTopping" />
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn prefWidth="80" text="Price">
-                        <cellValueFactory><PropertyValueFactory property="price" />
+                        <cellValueFactory>
+                            <PropertyValueFactory property="price" />
                         </cellValueFactory>
                     </TableColumn>
                     </columns>
