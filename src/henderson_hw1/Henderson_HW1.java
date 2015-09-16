@@ -25,7 +25,9 @@ public class Henderson_HW1 extends Application
                 FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
-        
+        String css = 
+                Henderson_HW1.class.getResource("HW1_css.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
     }

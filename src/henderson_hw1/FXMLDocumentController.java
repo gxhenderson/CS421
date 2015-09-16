@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 
 /**
  * This class contains all the controls for the GUI.
@@ -33,6 +34,9 @@ public class FXMLDocumentController implements Initializable
     private ComboBox cbxExtraToppings;
     
     @FXML
+    private Label lblPrice;
+    
+    @FXML
     private TableView<Pizza> tblPizza;
     
     private ObservableList<Pizza> pizzas = FXCollections.observableArrayList();
@@ -40,20 +44,53 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void btnAddPressed(ActionEvent event) 
     {
+        String order;
+        
         double price = Pizza.getPrice((String)cbxPizzaName.getValue(), 
                         (String)cbxPizzaSize.getValue());
         
-        pizzas.add(new Pizza(txtLastName.getText(), 
+        
+        Pizza pizza = new Pizza(txtLastName.getText(), 
                 (String)cbxPizzaName.getValue(), 
                 (String)cbxPizzaSize.getValue(), 
                 (String)cbxExtraToppings.getValue(),
-                price));
+                price);
+        
+        pizzas.add(pizza);
+        
+        lblPrice.setText(pizza.getPrice());
+        
+        order = "You have successfully added the following: \n"
+                + pizza.getPizzaSize() + " "
+                + pizza.getPizzaName() + " pizza with "
+                + pizza.getExtraTopping() + " ("
+                + pizza.getPrice() + ").\n";
+        Alert message = new Alert(Alert.AlertType.INFORMATION, order);
+        message.show();  
     }
     
     @FXML
     private void btnOrderPressed(ActionEvent event) 
     {
-        tblPizza.setItems(pizzas);
+        String order;
+        if(!pizzas.isEmpty())
+        {
+            order = "You have successfully ordered the following: \n";
+            for(int i = 0; i < pizzas.size(); i++)
+            {
+                order += pizzas.get(i).getPizzaSize() + " "
+                        + pizzas.get(i).getPizzaName() + " pizza with "
+                        + pizzas.get(i).getExtraTopping() + " ("
+                        + pizzas.get(i).getPrice() + ").\n";
+            }
+           
+            tblPizza.setItems(pizzas);
+        }
+        else
+            order = "You have not yet added a pizza to your order!";
+        
+        Alert message = new Alert(Alert.AlertType.INFORMATION, order);
+        message.show();
     }
     
     @Override
@@ -93,6 +130,8 @@ public class FXMLDocumentController implements Initializable
         private final static double TOPSMALL = 0.50;
         private final static double TOPMED = 1.00;
         private final static double TOPLARGE = 1.50;
+        
+        private final static double TAX = .06;
         
         /**
          * This class creates the pizzas being ordered
@@ -188,7 +227,7 @@ public class FXMLDocumentController implements Initializable
                     break;
             }
             
-            return tempPrice;
+            return (tempPrice + (tempPrice * TAX));
         }
     } 
 }

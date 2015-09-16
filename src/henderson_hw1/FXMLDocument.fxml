@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" 
-            id="AnchorPane" prefHeight="200" prefWidth="380" 
+            id="AnchorPane" prefHeight="200" prefWidth="400" 
             fx:controller="henderson_hw1.FXMLDocumentController">
     <children>
         <!-- Tabs to order and view -->
-        <TabPane id="OrderOptions" prefHeight="200" prefWidth="380" >  
+        <TabPane id="OrderOptions" prefHeight="200" prefWidth="400" >  
         <tabs>
             <!-- Tab to order pizza -->
             <Tab text="Order Pizza">
@@ -71,7 +71,9 @@
                                 </FXCollections>
                             </items>
                             <value><String fx:value="Extra Cheese" /></value>
-                        </ComboBox>    
+                        </ComboBox> 
+                        
+                        <Label fx:id="lblPrice">Price</Label>   
                     </children>
                 </HBox> 
                 </center>
@@ -91,7 +93,7 @@
             <!-- Tab for pizza order -->
             <Tab text="View Order">
                 <!-- Table to view order -->
-                <TableView fx:id="tblPizza" prefHeight="500" prefWidth="380"  >
+                <TableView fx:id="tblPizza" prefHeight="500" prefWidth="400"  >
                     <columns>
                     <TableColumn prefWidth="80" text="Last Name" >
                         <cellValueFactory>
